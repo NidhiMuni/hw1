@@ -17,7 +17,22 @@ the function below should be the only one in this file.
 void split(Node*& in, Node*& odds, Node*& evens)
 {
   /* Add code here */
-// WRITE YOUR CODE HERE
+  Node* current = in;
+  if (current != nullptr){
+    if (current->value % 2 == 0){
+      in = current->next;
+      current->next = evens;
+      evens = current;
+    } else {
+      in = current->next;
+      current->next = odds;
+      odds = current;
+    }
+
+    if (in != nullptr){
+      split (in, odds, evens);
+    }
+  }
 }
 
 /* If you needed a helper function, write it here */
