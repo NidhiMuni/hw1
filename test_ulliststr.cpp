@@ -64,7 +64,9 @@ int main(int argc, char* argv[])
   /*for (int i = 0; i < 50; i++){
 	  
   }*/
-  ULListStr list;
+
+  //TEST of fully removing things from the list then readding
+  /*ULListStr list;
 	list.push_back("oldfront");
 	list.push_back("oldback");
   cout << list.get(0) << " " << list.get(1) << endl;
@@ -91,7 +93,7 @@ int main(int argc, char* argv[])
 	list.push_front("newback");
   cout << list.get(0) << endl;
 	//EXPECT_TRUE(checkListContent(&list, {"newback"}));
-
+*/
 
   /*cout << dat.get(0) << dat.get(1) << dat.get(2) << dat.get(3) << endl;
   cout << dat.get(4) << dat.get(5) << dat.get(6) << dat.get(7) << endl;  

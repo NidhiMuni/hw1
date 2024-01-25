@@ -36,6 +36,8 @@ size_t ULListStr::size() const
 void ULListStr::push_back(const std::string& val){
   Item* curr = tail_;
   if (curr == nullptr){
+    //if there is nothing in the list yet, 
+    //create a new node for the element
     Item* temp = new Item();
     temp->next = nullptr;
     temp->prev = nullptr;
@@ -51,6 +53,7 @@ void ULListStr::push_back(const std::string& val){
       curr->val[curr->last - 1] = val;
       size_++;
     } else {
+      //if the current node is full, add a new node
       Item* temp = new Item();
       temp->first = 0;
       temp->last = 1;
@@ -75,6 +78,8 @@ void ULListStr::push_front(const std::string& val){
   Item* curr = head_;
 
   if (curr == nullptr){
+    //if there is nothing in the list yet, 
+    //create a new node for the element
     Item* temp = new Item();
     temp->next = nullptr;
     temp->prev = nullptr;
@@ -86,10 +91,12 @@ void ULListStr::push_front(const std::string& val){
     size_++;
   } else {
     if (curr->first > 0){
+      //if there is room, add the element
       curr->first = curr->first - 1;
       curr->val[curr->first] = val;
       size_++;
     } else {
+      //if the current node is full, add a new node
       Item* temp = new Item();
       temp->first = ARRSIZE - 1;
       temp->last = ARRSIZE;
@@ -110,6 +117,7 @@ void ULListStr::push_front(const std::string& val){
    */
 void ULListStr::pop_back(){
   if (tail_ != nullptr){
+
     //if there is only one element left
     if (tail_->last - tail_->first == 1){
       if (head_ == tail_){
@@ -145,12 +153,14 @@ void ULListStr::pop_front(){
 
       Item* temp = head_;
       head_ = temp->next;
+
       if (head_!=nullptr){
         head_->prev = nullptr;
       }
       delete temp;
       
       size_--;
+
     } else {
       head_->first = head_->first + 1;
       size_--;
@@ -185,7 +195,7 @@ std::string* ULListStr::getValAtLoc(size_t loc) const{
   size_t realIndex = loc + begin;
   size_t numNodes = realIndex / ARRSIZE;
 
-
+  //get to the necessary node
   Item* curr = head_;
   for (size_t i = 0; i < numNodes; i++){
     if (curr->next!=nullptr){
@@ -194,7 +204,6 @@ std::string* ULListStr::getValAtLoc(size_t loc) const{
   }
 
   size_t ind = realIndex - (numNodes * ARRSIZE);
-
   return &(curr->val[ind]);
 }
 
